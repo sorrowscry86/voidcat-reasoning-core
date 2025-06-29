@@ -1,0 +1,80 @@
+[project]
+name = "voidcat-reasoning-core"
+version = "0.1.0"
+description = "Advanced RAG-Enhanced Reasoning Engine with Strategic Intelligence"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "VoidCat Reasoning Core Team", email = "team@voidcat-reasoning.com" }
+]
+keywords = ["ai", "rag", "reasoning", "nlp", "fastapi", "openai", "machine-learning"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Linguistic",
+]
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.28.1",
+    "python-dotenv>=1.1.1",
+    "scikit-learn>=1.7.0",
+    "numpy>=2.3.1",
+    "fastapi>=0.104.1",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.11.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-asyncio>=0.24.0",
+    "black>=25.12.0",
+    "isort>=5.13.2",
+    "flake8>=7.1.1",
+    "mypy>=1.10.0",
+]
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.25.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/voidcat-reasoning-core"
+Documentation = "https://github.com/yourusername/voidcat-reasoning-core#readme"
+Repository = "https://github.com/yourusername/voidcat-reasoning-core.git"
+Issues = "https://github.com/yourusername/voidcat-reasoning-core/issues"
+
+[project.scripts]
+voidcat-server = "api_gateway:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ['py313']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

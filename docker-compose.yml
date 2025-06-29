@@ -1,0 +1,11 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  voidcat-engine:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./knowledge_source:/app/knowledge_source
+    env_file:
+      - .env
