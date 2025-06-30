@@ -77,7 +77,7 @@ Production-ready web service featuring:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/voidcat-reasoning-core.git
+   git clone https://github.com/sorrowscry86/voidcat-reasoning-core.git
    cd voidcat-reasoning-core
    ```
 
@@ -120,6 +120,118 @@ uvicorn api_gateway:app --reload --host 0.0.0.0 --port 8000
 
 ```bash
 python main.py
+```
+
+## 🐳 Engine Containerization
+
+The VoidCat Reasoning Engine supports full containerization for production deployments, development environments, and cloud orchestration. Our Genesis Protocol Dockerfile provides a complete, optimized container solution.
+
+### 🏗️ Building the Image
+
+Build the VoidCat Reasoning Engine container with strategic precision:
+
+```bash
+# Build with version tag (recommended for production)
+docker build -t voidcat-reasoning-engine:0.1.0 .
+
+# Build with latest tag for development
+docker build -t voidcat-reasoning-engine:latest .
+
+# Build for GitHub Container Registry (GHCR) publishing
+docker build -t ghcr.io/sorrowscry86/voidcat-reasoning-engine:0.1.0 .
+docker build -t ghcr.io/sorrowscry86/voidcat-reasoning-engine:latest .
+```
+
+**Genesis Protocol Features:**
+- **Optimized Layer Caching**: Dependencies installed separately for efficient rebuilds
+- **Production Hardening**: Security-focused base image with minimal attack surface  
+- **Strategic Port Exposure**: Port 8000 configured for MCP and API communications
+- **Clean Environment**: Automated cleanup and optimal resource utilization
+
+### 🚀 Running the Container
+
+Deploy the containerized VoidCat Reasoning Engine with full operational capabilities:
+
+```bash
+# Standard deployment with environment file
+docker run -d \
+  --name voidcat-reasoning \
+  -p 8000:8000 \
+  --env-file .env \
+  voidcat-reasoning-engine:latest
+
+# Development mode with interactive access
+docker run -it \
+  --name voidcat-reasoning-dev \
+  -p 8000:8000 \
+  --env-file .env \
+  -v $(pwd):/app \
+  voidcat-reasoning-engine:latest
+
+# Production deployment with resource limits
+docker run -d \
+  --name voidcat-reasoning-prod \
+  -p 8000:8000 \
+  --env-file .env \
+  --memory="2g" \
+  --cpus="1.0" \
+  --restart=unless-stopped \
+  voidcat-reasoning-engine:0.1.0
+```
+
+### 🔧 Container Management
+
+Essential commands for container lifecycle management:
+
+```bash
+# Monitor container status and logs
+docker ps
+docker logs voidcat-reasoning
+
+# Execute commands within running container
+docker exec -it voidcat-reasoning bash
+
+# Stop and remove container
+docker stop voidcat-reasoning
+docker rm voidcat-reasoning
+
+# Health check verification
+curl http://localhost:8000/
+```
+
+### 🌩️ Cloud Deployment
+
+Deploy to popular container orchestration platforms:
+
+```bash
+# Docker Compose (recommended for multi-service deployments)
+docker-compose up -d
+
+# Docker Swarm
+docker service create \
+  --name voidcat-reasoning \
+  --publish 8000:8000 \
+  --env-file .env \
+  voidcat-reasoning-engine:latest
+
+# Kubernetes deployment (requires k8s manifests)
+kubectl apply -f k8s/
+```
+
+### 📦 GitHub Container Registry (GHCR)
+
+Publish and distribute via GitHub Container Registry:
+
+```bash
+# Authenticate with GitHub
+echo $GITHUB_TOKEN | docker login ghcr.io -u USERNAME --password-stdin
+
+# Push to GHCR
+docker push ghcr.io/sorrowscry86/voidcat-reasoning-engine:0.1.0
+docker push ghcr.io/sorrowscry86/voidcat-reasoning-engine:latest
+
+# Pull from GHCR
+docker pull ghcr.io/sorrowscry86/voidcat-reasoning-engine:latest
 ```
 
 ### 📡 API Usage
@@ -273,7 +385,37 @@ curl -X POST "http://localhost:8000/query" \
      -d '{"query": "Complex reasoning task", "model": "gpt-4"}'
 ```
 
-## 🛡️ Security Considerations
+## � Claude Desktop MCP Integration
+
+VoidCat Reasoning Core can be integrated as a Model Context Protocol (MCP) server with Claude Desktop for enhanced AI capabilities.
+
+### Quick MCP Setup
+
+Add this configuration to your Claude Desktop config file (`C:\Users\[Username]\AppData\Roaming\Claude\claude_desktop_config.json`):
+
+```json
+{
+    "mcpServers": {
+        "voidcat-reasoning-core": {
+            "command": "uvicorn",
+            "args": [
+                "api_gateway:app",
+                "--host", "127.0.0.1",
+                "--port", "8000",
+                "--reload"
+            ],
+            "workingDirectory": "P:\\voidcat-reasoning-core\\",
+            "env": {
+                "OPENAI_API_KEY": "your_openai_api_key_here"
+            }
+        }
+    }
+}
+```
+
+For complete MCP integration instructions, see [MCP_INTEGRATION.md](MCP_INTEGRATION.md).
+
+## �🛡️ Security Considerations
 
 - **API Key Protection**: Never commit API keys to version control
 - **Environment Isolation**: Use virtual environments for dependency management
@@ -294,7 +436,7 @@ We welcome contributions! Please follow these guidelines:
 
 ```bash
 # Clone your fork
-git clone https://github.com/yourusername/voidcat-reasoning-core.git
+git clone https://github.com/sorrowscry86/voidcat-reasoning-core.git
 
 # Install in development mode
 pip install -e ".[dev]"
@@ -316,8 +458,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/voidcat-reasoning-core/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/voidcat-reasoning-core/discussions)
+- **Issues**: [GitHub Issues](https://github.com/sorrowscry86/voidcat-reasoning-core/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/sorrowscry86/voidcat-reasoning-core/discussions)
 - **Email**: support@voidcat-reasoning.com
 
 ---
