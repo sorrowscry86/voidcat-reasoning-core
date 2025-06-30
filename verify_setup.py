@@ -17,7 +17,7 @@ def check_python_version():
     """Check if Python version is compatible."""
     print("🐍 Checking Python version...")
     version = sys.version_info
-    if version.major >= 3 and version.minor >= 8:
+    if version.major > 3 or (version.major == 3 and version.minor >= 8):
         print(f"  ✅ Python {version.major}.{version.minor}.{version.micro} (Compatible)")
         return True
     else:
