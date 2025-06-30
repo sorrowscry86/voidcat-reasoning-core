@@ -2,7 +2,7 @@
 """
 VoidCat Reasoning Core Engine
 
-This module implements the core RAG (Retrieval-Augmented Generation) engine
+This module implements the core RAG (Retrieval Augmented Generation) engine
 for the VoidCat Reasoning Core system. It provides intelligent document
 processing, vectorization, and context-aware query processing.
 
@@ -18,12 +18,18 @@ License: MIT
 """
 
 import os
+import sys
 import httpx
 from dotenv import load_dotenv
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from typing import List, Optional
+
+
+def debug_print(message: str) -> None:
+    """Print debug messages to stderr to avoid interfering with MCP protocol."""
+    print(message, file=sys.stderr, flush=True)
 
 
 class VoidCatEngine:
@@ -53,11 +59,16 @@ class VoidCatEngine:
         """
         load_dotenv()
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        
+        # Ensure knowledge_dir is relative to the script's directory
+        if not os.path.isabs(knowledge_dir):
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            knowledge_dir = os.path.join(script_dir, knowledge_dir)
         self.api_url = "https://api.openai.com/v1/chat/completions"
         
         if not self.openai_api_key:
-            print("Warning: OPENAI_API_KEY not found in environment variables.")
-            print("Please ensure your .env file contains the API key.")
+            debug_print("Warning: OPENAI_API_KEY not found in environment variables.")
+            debug_print("Please ensure your .env file contains the API key.")
         
         self.documents: List[str] = []
         self.vectorizer = TfidfVectorizer(
@@ -67,6 +78,8 @@ class VoidCatEngine:
             ngram_range=(1, 2)
         )
         self.doc_vectors = None
+        self.total_queries_processed = 0
+        self.last_query_timestamp = None
         self._load_documents(knowledge_dir)
 
     def _load_documents(self, knowledge_dir: str) -> None:
@@ -81,18 +94,18 @@ class VoidCatEngine:
             in the specified directory, creating TF-IDF vectors for
             efficient similarity matching.
         """
-        print("Engine Initializing: Loading knowledge base...")
+        debug_print("Engine Initializing: Loading knowledge base...")
         
         if not os.path.isdir(knowledge_dir):
-            print(f"Warning: Knowledge directory '{knowledge_dir}' not found.")
-            print("Creating empty knowledge base. Add .md files to enable RAG.")
+            debug_print(f"Warning: Knowledge directory '{knowledge_dir}' not found.")
+            debug_print("Creating empty knowledge base. Add .md files to enable RAG.")
             return
 
         markdown_files = [f for f in os.listdir(knowledge_dir) if f.endswith('.md')]
         
         if not markdown_files:
-            print(f"Warning: No .md files found in '{knowledge_dir}'.")
-            print("Add markdown documents to enable intelligent context retrieval.")
+            debug_print(f"Warning: No .md files found in '{knowledge_dir}'.")
+            debug_print("Add markdown documents to enable intelligent context retrieval.")
             return
 
         for filename in markdown_files:
@@ -102,20 +115,20 @@ class VoidCatEngine:
                     content = f.read().strip()
                     if content:  # Only add non-empty documents
                         self.documents.append(content)
-                        print(f"  ✓ Loaded: {filename}")
+                        debug_print(f"  ✓ Loaded: {filename}")
             except Exception as e:
-                print(f"  ✗ Failed to load {filename}: {str(e)}")
+                debug_print(f"  ✗ Failed to load {filename}: {str(e)}")
         
         if self.documents:
             try:
                 self.doc_vectors = self.vectorizer.fit_transform(self.documents)
-                print(f"Engine Initialized: Successfully loaded {len(self.documents)} document(s).")
-                print(f"Vectorization completed: {self.doc_vectors.shape[1]} features.")
+                debug_print(f"Engine Initialized: Successfully loaded {len(self.documents)} document(s).")
+                debug_print(f"Vectorization completed: {self.doc_vectors.shape[1]} features.")
             except Exception as e:
-                print(f"Error during vectorization: {str(e)}")
+                debug_print(f"Error during vectorization: {str(e)}")
                 self.doc_vectors = None
         else:
-            print("Engine Initialized: No valid documents found in knowledge base.")
+            debug_print("Engine Initialized: No valid documents found in knowledge base.")
 
     def _retrieve_context(self, query: str, top_k: int = 1) -> str:
         """
@@ -178,15 +191,20 @@ class VoidCatEngine:
                    "Example: echo 'OPENAI_API_KEY=your_key_here' > .env")
 
         # Stage 1: Retrieve relevant context
-        print("[Engine: Retrieving context...]")
+        debug_print("[Engine: Retrieving context...]")
         context = self._retrieve_context(user_query)
 
         # Stage 2: Construct enhanced prompt with context
         enhanced_prompt = self._build_enhanced_prompt(user_query, context)
 
         # Stage 3: Query OpenAI API
-        print("[Engine: Querying reasoning model...]")
-        return await self._call_openai_api(enhanced_prompt, model)
+        debug_print("[Engine: Querying reasoning model...]")
+        response = await self._call_openai_api(enhanced_prompt, model)
+
+        # Update query processing state
+        self.update_query_metrics()
+
+        return response
     
     def _build_enhanced_prompt(self, user_query: str, context: str) -> str:
         """
@@ -261,3 +279,17 @@ Please provide your response:"""
             return "Error: Request timeout. The API took too long to respond."
         except Exception as e:
             return f"Unexpected error occurred: {str(e)}"
+    
+    def update_query_metrics(self):
+        """Update query metrics after processing a query."""
+        from datetime import datetime
+        self.total_queries_processed += 1
+        self.last_query_timestamp = datetime.utcnow().isoformat()
+
+    def get_diagnostics(self):
+        """Return diagnostic information for the engine."""
+        return {
+            "documents_loaded": len(self.documents),
+            "total_queries_processed": self.total_queries_processed,
+            "last_query_timestamp": self.last_query_timestamp
+        }
