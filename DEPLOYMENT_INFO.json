@@ -1,0 +1,31 @@
+{
+  "project_name": "VoidCat Reasoning Core - Enhanced",
+  "version": "2.0.0",
+  "deployment_date": "2025-06-29T23:27:27.586375",
+  "features": {
+    "sequential_thinking": "Multi-stage reasoning with complexity assessment",
+    "context7_integration": "Advanced context retrieval and analysis",
+    "enhanced_rag": "Combined reasoning pipeline",
+    "mcp_protocol": "Full Model Context Protocol compliance",
+    "claude_integration": "Ready for Claude Desktop"
+  },
+  "architecture": {
+    "stages": [
+      "Query Analysis & Complexity Assessment",
+      "Context7 Enhanced Context Retrieval",
+      "Sequential Thinking Reasoning Process",
+      "RAG Integration for Response Generation",
+      "Quality Validation & Response Synthesis"
+    ]
+  },
+  "tools": [
+    "voidcat_query",
+    "voidcat_enhanced_query",
+    "voidcat_sequential_thinking",
+    "voidcat_status",
+    "voidcat_analyze_knowledge",
+    "voidcat_configure_engine"
+  ],
+  "status": "production_ready",
+  "github_ready": true
+}

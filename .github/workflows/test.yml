@@ -1,0 +1,41 @@
+name: VoidCat Enhanced Test
+
+on:
+  push:
+    branches: [ main, enhanced ]
+  pull_request:
+    branches: [ main, enhanced ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Validate imports
+      run: |
+        python -c "from enhanced_engine import VoidCatEnhancedEngine; print('Enhanced engine import successful')"
+        python -c "from sequential_thinking import SequentialThinkingEngine; print('Sequential thinking import successful')"
+        python -c "from context7_integration import Context7Engine; print('Context7 import successful')"
+    
+    - name: Run basic validation
+      run: |
+        python -c "
+        import asyncio
+        from enhanced_engine import VoidCatEnhancedEngine
+        async def test():
+            engine = VoidCatEnhancedEngine()
+            print('Enhanced engine created successfully')
+        asyncio.run(test())
+        "
