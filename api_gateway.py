@@ -264,6 +264,22 @@ async def system_info():
     return info
 
 
+@app.get("/diagnostics")
+async def diagnostics():
+    """Provide real-time diagnostics for the VoidCat Reasoning Core."""
+    global vce
+    if not vce:
+        return {"status": "offline", "message": "Engine not initialized"}
+
+    return {
+        "status": "online",
+        "documents_loaded": vce.get_diagnostics()["documents_loaded"],
+        "total_queries_processed": vce.total_queries_processed,
+        "last_query_timestamp": vce.last_query_timestamp,
+        "health": "healthy"
+    }
+
+
 # Add custom exception handler for better error responses
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
