@@ -2,7 +2,10 @@ import os
 import time
 import threading
 import requests
-from customtkinter import CTk, CTkLabel
+try:
+    from customtkinter import CTk, CTkLabel
+except ImportError:
+    raise ImportError("customtkinter is not installed. Install it using 'pip install customtkinter'.")
 from pystray import Icon, MenuItem, Menu
 from PIL import Image, ImageDraw
 

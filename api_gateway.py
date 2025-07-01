@@ -64,7 +64,7 @@ app = FastAPI(
     The VoidCat Reasoning Core API provides intelligent query processing capabilities
     using Retrieval-Augmented Generation (RAG) with OpenAI's reasoning models.
     
-    ### Key Features:
+    ### os.getenv('API_os.getenv('SECRET_KEY')') Features:
     - **Intelligent Context Retrieval**: TF-IDF based document similarity matching
     - **Multi-Document Processing**: Seamless handling of extensive knowledge bases  
     - **Async Processing**: High-performance non-blocking operations
@@ -72,7 +72,7 @@ app = FastAPI(
     
     ### Usage:
     1. Add markdown documents to the `knowledge_source/` directory
-    2. Set your `OPENAI_API_KEY` in the environment
+    2. Set your `OPENAI_API_os.getenv('SECRET_KEY')` in the environment
     3. Send queries to the `/query` endpoint
     4. Receive contextually-aware AI responses
     

@@ -62,7 +62,7 @@ EXPOSE 8000
 # Execute the VoidCat Reasoning Engine via main.py as specified in the Genesis Protocol
 # This launches the complete system: Enhanced Engine, MCP Server, Context7 Integration
 # The engine awakens with full autonomous capabilities and strategic intelligence
-CMD ["python", "./main.py"]
+CMD ["uvicorn", "api_gateway:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # ============================================================================
 # END GENESIS PROTOCOL DOCKERFILE

@@ -118,12 +118,13 @@ class ReasoningSession:
     
     def _calculate_duration(self) -> float:
         """Calculate session duration in seconds."""
-        if not self.completed_at:
+        if not self.created_at or not self.completed_at:
             return 0.0
-        
-        start = datetime.fromisoformat(self.created_at.replace('Z', '+00:00'))
-        end = datetime.fromisoformat(self.completed_at.replace('Z', '+00:00'))
-        return (end - start).total_seconds()
+
+        start = datetime.fromisoformat(self.created_at.replace('Z', '+00:00')) if self.created_at else None
+        end = datetime.fromisoformat(self.completed_at.replace('Z', '+00:00')) if self.completed_at else None
+
+        return (end - start).total_seconds() if start and end else 0.0
 
 
 class SequentialThinkingEngine:

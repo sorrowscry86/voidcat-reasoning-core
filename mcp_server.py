@@ -26,15 +26,24 @@ from typing import Any, Dict, List, Optional, Sequence
 from dataclasses import dataclass
 import os
 import traceback
+from datetime import datetime, UTC
 
 from engine import VoidCatEngine
 from enhanced_engine import VoidCatEnhancedEngine
 from sequential_thinking import SequentialThinkingEngine
 
 
-def debug_print(message: str) -> None:
-    """Print debug messages to stderr to avoid interfering with MCP protocol."""
-    print(f"[VoidCat MCP] {message}", file=sys.stderr, flush=True)
+def debug_print(message: str, force: bool = False) -> None:
+    """Enhanced debug printing with stderr output for MCP debugging."""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+    debug_message = f"[{timestamp}] [VoidCat-Debug] {message}"
+    
+    # Always print to stderr for MCP server visibility
+    print(debug_message, file=sys.stderr, flush=True)
+    
+    # Also print to stdout if in debug mode or forced
+    if DEBUG or force:
+        print(debug_message, flush=True)
 
 
 @dataclass
@@ -225,12 +234,22 @@ class VoidCatMCPServer:
     async def initialize(self, request_id: Optional[str] = None) -> None:
         """Initialize the VoidCat engine and respond to MCP initialize request."""
         try:
-            from datetime import datetime, UTC
-            self.initialization_time = datetime.now(UTC).isoformat()
+            debug_print(f"Starting VoidCat MCP Server initialization...", force=True)
             
-            debug_print("Initializing VoidCat Enhanced Reasoning Core MCP Server...")
+            # Initialize the enhanced engine
+            from enhanced_engine import VoidCatEnhancedEngine
+            debug_print("Importing VoidCatEnhancedEngine...", force=True)
+            
             self.engine = VoidCatEnhancedEngine()
-            debug_print("Enhanced engine initialization completed successfully")
+            debug_print("VoidCat engine created successfully", force=True)
+            
+            # Initialize the engine
+            # The enhanced engine initializes itself upon creation
+            debug_print("VoidCat enhanced engine ready", force=True)
+            debug_print("VoidCat engine initialized successfully", force=True)
+            
+            self.initialization_time = datetime.now().isoformat()
+            debug_print(f"VoidCat MCP Server fully initialized at {self.initialization_time}", force=True)
             
             await self._send_response({
                 "jsonrpc": "2.0",
@@ -239,23 +258,21 @@ class VoidCatMCPServer:
                     "protocolVersion": "2024-11-05",
                     "capabilities": {
                         "tools": {},
-                        "resources": {},
-                        "prompts": {}
+                        "logging": {}
                     },
                     "serverInfo": {
                         "name": "voidcat-reasoning-core",
-                        "version": self.server_version,
-                        "description": "RAG-enhanced intelligent reasoning engine"
+                        "version": self.server_version
                     }
                 }
             })
-            debug_print("MCP initialization response sent successfully")
+            debug_print("MCP initialization response sent successfully", force=True)
             
         except Exception as e:
-            self.error_count += 1
-            error_msg = f"Failed to initialize VoidCat engine: {str(e)}"
-            debug_print(f"Initialization error: {error_msg}")
-            debug_print(f"Traceback: {traceback.format_exc()}")
+            error_msg = f"VoidCat engine initialization failed: {str(e)}"
+            debug_print(f"CRITICAL ERROR: {error_msg}", force=True)
+            debug_print(f"Traceback: {traceback.format_exc()}", force=True)
+            
             await self._send_error(error_msg, request_id)
     
     async def handle_list_tools(self, request_id: Optional[str] = None) -> None:
@@ -311,20 +328,20 @@ class VoidCatMCPServer:
         query = arguments.get("query", "")
         model = arguments.get("model", "gpt-4o-mini")
         context_depth = arguments.get("context_depth", 1)
-        
+
         if not query:
             await self._send_error("Query parameter is required and cannot be empty", request_id)
             return
-        
+
         try:
             if not self.engine:
                 await self._send_error("VoidCat engine is not initialized", request_id)
                 return
-                
+
             debug_print(f"Processing query with model: {model}, context_depth: {context_depth}")
             response = await self.engine.query(query, model=model)
             self.query_count += 1
-            
+
             await self._send_response({
                 "jsonrpc": "2.0",
                 "id": request_id,
@@ -338,7 +355,7 @@ class VoidCatMCPServer:
                 }
             })
             debug_print(f"Query processed successfully (Total queries: {self.query_count})")
-            
+
         except Exception as e:
             self.error_count += 1
             error_msg = f"Query processing failed: {str(e)}"
@@ -350,11 +367,15 @@ class VoidCatMCPServer:
         try:
             detailed = arguments.get("detailed", False)
             
+            # Get comprehensive health status
+            health_status = await self.validate_mcp_server_health()
+            
             if not self.engine:
                 status = {
                     "engine_initialized": False,
                     "error": "Engine not initialized",
-                    "server_version": self.server_version
+                    "server_version": self.server_version,
+                    "mcp_health": health_status
                 }
             else:
                 # Safe knowledge base status check with defensive programming
@@ -364,6 +385,7 @@ class VoidCatMCPServer:
                     "initialization_time": self.initialization_time,
                     "query_count": self.query_count,
                     "error_count": self.error_count,
+                    "mcp_health": health_status,
                     "knowledge_base": {
                         "loaded": False,
                         "document_count": 0,
@@ -386,6 +408,10 @@ class VoidCatMCPServer:
             else:
                 status_text += "\n\n⚠️ **Status**: Initialization Required"
             
+            # Add MCP-specific diagnostics
+            if not health_status.get("mcp_server_operational", True):
+                status_text += "\n\n🚨 **MCP Server Issues Detected** - Check environment and dependencies"
+            
             await self._send_response({
                 "jsonrpc": "2.0",
                 "id": request_id,
@@ -402,7 +428,7 @@ class VoidCatMCPServer:
         except Exception as e:
             self.error_count += 1
             error_msg = f"Status check failed: {str(e)}"
-            debug_print(f"Status error: {error_msg}")
+            debug_print(f"Status error: {error_msg}", force=True)
             await self._send_error(error_msg, request_id)
 
     async def _handle_sequential_thinking_tool(self, arguments: Dict[str, Any], request_id: Optional[str] = None) -> None:
@@ -709,6 +735,52 @@ class VoidCatMCPServer:
             await self.handle_call_tool(tool_name, arguments, request_id)
         else:
             await self._send_error(f"Unknown method: {method}", request_id)
+
+    async def validate_mcp_server_health(self) -> Dict[str, Any]:
+        """Comprehensive MCP server health validation."""
+        health_status = {
+            "mcp_server_operational": True,
+            "engine_status": "unknown",
+            "dependencies_available": {},
+            "environment_variables": {},
+            "python_path": sys.executable,
+            "working_directory": os.getcwd(),
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        try:
+            # Check critical dependencies
+            dependencies = ["httpx", "openai", "dotenv", "sklearn", "numpy"]
+            for dep in dependencies:
+                try:
+                    __import__(dep.replace("-", "_"))
+                    health_status["dependencies_available"][dep] = True
+                except ImportError:
+                    health_status["dependencies_available"][dep] = False
+                    health_status["mcp_server_operational"] = False
+            
+            # Check environment variables
+            env_vars = ["OPENAI_API_KEY", "DEEPSEEK_API_KEY", "PYTHONPATH"]
+            for var in env_vars:
+                value = os.getenv(var, "NOT_SET")
+                health_status["environment_variables"][var] = "SET" if value != "NOT_SET" else "NOT_SET"
+            
+            # Check engine status
+            if self.engine:
+                health_status["engine_status"] = "initialized"
+            else:
+                health_status["engine_status"] = "not_initialized"
+                health_status["mcp_server_operational"] = False
+                
+        except Exception as e:
+            health_status["mcp_server_operational"] = False
+            health_status["validation_error"] = str(e)
+            
+        return health_status
+
+
+# Configuration and debugging
+DEBUG = os.getenv("VOIDCAT_DEBUG", "false").lower() == "true"
 
 
 async def main():
