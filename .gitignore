@@ -173,3 +173,10 @@ desktop.ini
 knowledge_source_backup/
 temp/
 docs/_build/
+
+# Ignore Albedo Supermemory file
+Albedo Supermemory.txt
+
+# Ignore sensitive configuration files
+claude_desktop_config.json
+.env
