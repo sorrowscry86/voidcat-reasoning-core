@@ -1,0 +1,90 @@
+{
+    "@context": "https://voidcat.dev/knowledge/v2",
+    "@type": "OptimizedKnowledgeDocument",
+    "id": "sequential-thinking-research",
+    "version": "2.0",
+    "title": "Sequential Thinking Methodology",
+    "description": "A comprehensive guide to sequential thinking in AI reasoning systems",
+    "keywords": [
+        "sequential",
+        "thinking",
+        "reasoning",
+        "MCP",
+        "AI",
+        "methodology"
+    ],
+    "optimization_metadata": {
+        "last_indexed": "2025-07-05T00:00:00Z",
+        "vector_hash": "abc123def456",
+        "chunk_count": 5,
+        "processing_time_ms": 150
+    },
+    "content_chunks": [
+        {
+            "chunk_id": "st_001",
+            "content": "# Sequential Thinking Methodology\n\nSequential thinking involves systematic step-by-step reasoning to solve complex problems. In the context of AI systems, it refers to the ability to break down complex queries into manageable steps, explore multiple reasoning paths, and synthesize a comprehensive response.\n\n## Core Principles\n\n1. **Systematic Decomposition**: Breaking complex problems into simpler sub-problems\n2. **Multi-path Exploration**: Considering multiple approaches to solving a problem\n3. **Iterative Refinement**: Continuously improving solutions through feedback\n4. **Explicit Reasoning**: Making the reasoning process transparent and explainable\n5. **Confidence Assessment**: Evaluating the reliability of each reasoning step",
+            "keywords": [
+                "sequential",
+                "thinking",
+                "methodology",
+                "principles"
+            ],
+            "relevance_boost": 1.5,
+            "chunk_type": "introduction"
+        },
+        {
+            "chunk_id": "st_002",
+            "content": "## Complexity Levels in Sequential Thinking\n\nSequential thinking can be applied at different complexity levels depending on the nature of the query:\n\n### Simple Complexity\n- Linear reasoning path\n- Few reasoning steps (1-3)\n- Clear, well-defined problem\n- Example: \"What is the capital of France?\"\n\n### Medium Complexity\n- Branched reasoning with 2-3 paths\n- Moderate number of steps (4-7)\n- Some ambiguity or multiple aspects\n- Example: \"Compare and contrast renewable energy sources\"\n\n### High Complexity\n- Multi-branched reasoning with 3-5 paths\n- Many reasoning steps (8-15)\n- Significant ambiguity or complexity\n- Example: \"Analyze the economic impact of climate change policies\"\n\n### Expert Complexity\n- Highly branched reasoning with 5+ paths\n- Extensive reasoning steps (15+)\n- Extreme ambiguity or complexity\n- Example: \"Develop a comprehensive strategy for sustainable urban development\"",
+            "keywords": [
+                "complexity",
+                "levels",
+                "reasoning",
+                "paths"
+            ],
+            "relevance_boost": 1.2,
+            "chunk_type": "methodology"
+        },
+        {
+            "chunk_id": "st_003",
+            "content": "## Reasoning Types in Sequential Thinking\n\nSequential thinking employs various types of reasoning steps:\n\n### Analysis\n- Breaking down complex concepts\n- Identifying key components\n- Examining relationships between elements\n\n### Hypothesis\n- Formulating potential explanations\n- Proposing solutions or approaches\n- Making educated guesses based on available information\n\n### Validation\n- Testing hypotheses against evidence\n- Checking logical consistency\n- Verifying factual accuracy\n\n### Synthesis\n- Combining insights from multiple sources\n- Integrating different perspectives\n- Creating cohesive understanding\n\n### Revision\n- Refining initial thoughts\n- Correcting errors or misconceptions\n- Improving clarity and precision",
+            "keywords": [
+                "reasoning",
+                "types",
+                "analysis",
+                "hypothesis",
+                "validation",
+                "synthesis",
+                "revision"
+            ],
+            "relevance_boost": 1.3,
+            "chunk_type": "methodology"
+        },
+        {
+            "chunk_id": "st_004",
+            "content": "## Implementation Approaches\n\nThere are several approaches to implementing sequential thinking in AI systems:\n\n### Chain-of-Thought Prompting\n- Instructing the model to show its reasoning steps\n- Example: \"Think step by step to solve this problem...\"\n- Advantages: Simple to implement, works with existing models\n- Limitations: Limited control over reasoning process\n\n### Tree-of-Thoughts\n- Exploring multiple reasoning paths simultaneously\n- Branching at decision points to consider alternatives\n- Advantages: More comprehensive exploration of solution space\n- Limitations: Increased computational cost\n\n### ReAct Framework\n- Alternating between reasoning and action steps\n- Incorporating external tools and information sources\n- Advantages: Combines reasoning with real-world interaction\n- Limitations: Requires integration with external systems\n\n### Monte Carlo Tree Search (MCTS)\n- Using search algorithms to explore reasoning paths\n- Evaluating and prioritizing promising branches\n- Advantages: Efficient exploration of complex reasoning spaces\n- Limitations: Complex implementation, high computational requirements",
+            "keywords": [
+                "implementation",
+                "approaches",
+                "chain-of-thought",
+                "tree-of-thoughts",
+                "react",
+                "mcts"
+            ],
+            "relevance_boost": 1.1,
+            "chunk_type": "implementation"
+        },
+        {
+            "chunk_id": "st_005",
+            "content": "## Integration with MCP\n\nSequential thinking can be integrated with the Model Context Protocol (MCP) to enhance reasoning capabilities:\n\n### MCP Tool Integration\n- Using MCP tools to gather information during reasoning\n- Executing actions based on reasoning steps\n- Example: Searching for relevant information to validate hypotheses\n\n### Context-Aware Reasoning\n- Leveraging MCP resources to provide context for reasoning\n- Adapting reasoning paths based on available context\n- Example: Adjusting reasoning complexity based on document relevance\n\n### Enhanced Response Generation\n- Structuring MCP responses to show reasoning process\n- Including confidence scores and alternative perspectives\n- Example: Providing detailed reasoning traces in tool responses\n\n### Implementation Example\n```python\nasync def process_sequential_query(query, context):\n    # Assess complexity\n    complexity = assess_complexity(query)\n    \n    # Select reasoning strategy based on complexity\n    if complexity == \"simple\":\n        result = await linear_reasoning(query, context)\n    elif complexity == \"medium\":\n        result = await branched_reasoning(query, context, max_branches=3)\n    else:  # high or expert\n        result = await mcts_reasoning(query, context, max_depth=7)\n    \n    # Format response for MCP\n    return {\n        \"response\": result.final_answer,\n        \"reasoning_trace\": result.reasoning_steps,\n        \"confidence\": result.confidence_score\n    }\n```",
+            "keywords": [
+                "mcp",
+                "integration",
+                "tools",
+                "context",
+                "implementation"
+            ],
+            "relevance_boost": 1.4,
+            "chunk_type": "integration"
+        }
+    ]
+}

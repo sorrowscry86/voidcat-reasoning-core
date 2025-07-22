@@ -11,26 +11,27 @@ Usage:
 """
 
 import asyncio
+
 from engine import VoidCatEngine
 
 
 async def run_test_harness():
     """
     Comprehensive test harness for the VoidCat RDC Engine.
-    
+
     This function initializes the engine, loads the knowledge base,
     and executes a series of validation queries to ensure system
     operational readiness.
     """
     print("Initializing VoidCat RDC Engine...")
-    
+
     # Initialize the engine
     engine = VoidCatEngine()
-    
+
     # Test query to validate system functionality
     test_query = "What are the core MCP primitives and who controls them?"
     print(f"Executing query: '{test_query}'")
-    
+
     try:
         response = await engine.query(test_query)
         print("---Engine Response---")
@@ -45,7 +46,7 @@ async def run_test_harness():
 def main():
     """
     Main entry point for the VoidCat Reasoning Core system.
-    
+
     Provides information about available execution modes and
     runs the test harness by default.
     """
@@ -59,10 +60,10 @@ def main():
     print()
     print("Running test harness...")
     print()
-    
+
     # Run the async test harness
     success = asyncio.run(run_test_harness())
-    
+
     if success:
         print()
         print("✅ Test harness completed successfully!")

@@ -1,0 +1,87 @@
+# ============================================================================
+# VoidCat Reasoning Core - Docker Compose for MCP Server
+# ============================================================================
+# Complete Docker setup for MCP server deployment
+# Includes volume mounts for persistence and proper networking
+# ============================================================================
+
+version: '3.8'
+
+services:
+  # Main MCP Server
+  voidcat-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    container_name: voidcat-reasoning-core-mcp
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    volumes:
+      # Mount knowledge sources (read-only)
+      - ./knowledge_source:/app/knowledge_source:ro
+      # Mount agentic tools data (read-write for persistence)
+      - voidcat_agentic_data:/app/.agentic-tools-mcp
+      # Mount indexes (read-write for caching)
+      - voidcat_indexes:/app/indexes
+      # Mount logs directory
+      - voidcat_logs:/app/logs
+    environment:
+      - VOIDCAT_DEBUG=true
+      - VOIDCAT_DOCKER=true
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    networks:
+      - voidcat-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: API Gateway (for web interface)
+  voidcat-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: voidcat-reasoning-core-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./knowledge_source:/app/knowledge_source:ro
+      - voidcat_agentic_data:/app/.agentic-tools-mcp
+      - voidcat_indexes:/app/indexes
+    environment:
+      - VOIDCAT_DEBUG=true
+      - VOIDCAT_DOCKER=true
+    env_file:
+      - .env
+    networks:
+      - voidcat-network
+    depends_on:
+      voidcat-mcp:
+        condition: service_healthy
+    profiles:
+      - api
+
+# Named volumes for data persistence
+volumes:
+  voidcat_agentic_data:
+    driver: local
+    name: voidcat_agentic_data
+  voidcat_indexes:
+    driver: local
+    name: voidcat_indexes
+  voidcat_logs:
+    driver: local
+    name: voidcat_logs
+
+# Custom network for inter-service communication
+networks:
+  voidcat-network:
+    driver: bridge
+    name: voidcat-network

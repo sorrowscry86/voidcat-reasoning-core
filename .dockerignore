@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# IDE / Editor specific
+.vscode/
+.idea/
+
+# Python cache & artifacts
+__pycache__/
+*.pyc
+
+# Environment files (should be passed at runtime, not built-in)
+.env
+.env.*
+!/.env.example

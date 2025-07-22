@@ -1,13 +1,18 @@
 import os
-import time
 import threading
+import time
+
 import requests
+
 try:
     from customtkinter import CTk, CTkLabel
 except ImportError:
-    raise ImportError("customtkinter is not installed. Install it using 'pip install customtkinter'.")
-from pystray import Icon, MenuItem, Menu
+    raise ImportError(
+        "customtkinter is not installed. Install it using 'pip install customtkinter'."
+    )
 from PIL import Image, ImageDraw
+from pystray import Icon, Menu, MenuItem
+
 
 class DiagnosticsWidget:
     def __init__(self):
@@ -16,19 +21,29 @@ class DiagnosticsWidget:
         self.root.geometry("300x200")
         self.root.attributes("-topmost", True)
 
-        self.status_label = CTkLabel(self.root, text="Status: Unknown", font=("Arial", 14))
+        self.status_label = CTkLabel(
+            self.root, text="Status: Unknown", font=("Arial", 14)
+        )
         self.status_label.pack(pady=10)
 
-        self.documents_label = CTkLabel(self.root, text="Documents Loaded: 0", font=("Arial", 14))
+        self.documents_label = CTkLabel(
+            self.root, text="Documents Loaded: 0", font=("Arial", 14)
+        )
         self.documents_label.pack(pady=10)
 
-        self.last_query_label = CTkLabel(self.root, text="Last Query: N/A", font=("Arial", 14))
+        self.last_query_label = CTkLabel(
+            self.root, text="Last Query: N/A", font=("Arial", 14)
+        )
         self.last_query_label.pack(pady=10)
 
-        self.total_queries_label = CTkLabel(self.root, text="Total Queries: 0", font=("Arial", 14))
+        self.total_queries_label = CTkLabel(
+            self.root, text="Total Queries: 0", font=("Arial", 14)
+        )
         self.total_queries_label.pack(pady=10)
 
-        self.polling_thread = threading.Thread(target=self.poll_diagnostics, daemon=True)
+        self.polling_thread = threading.Thread(
+            target=self.poll_diagnostics, daemon=True
+        )
         self.polling_thread.start()
 
     def poll_diagnostics(self):
@@ -38,9 +53,15 @@ class DiagnosticsWidget:
                 if response.status_code == 200:
                     data = response.json()
                     self.status_label.configure(text=f"Status: {data['status']}")
-                    self.documents_label.configure(text=f"Documents Loaded: {data['documents_loaded']}")
-                    self.last_query_label.configure(text=f"Last Query: {data['last_query_timestamp']}")
-                    self.total_queries_label.configure(text=f"Total Queries: {data['total_queries_processed']}")
+                    self.documents_label.configure(
+                        text=f"Documents Loaded: {data['documents_loaded']}"
+                    )
+                    self.last_query_label.configure(
+                        text=f"Last Query: {data['last_query_timestamp']}"
+                    )
+                    self.total_queries_label.configure(
+                        text=f"Total Queries: {data['total_queries_processed']}"
+                    )
             except Exception as e:
                 self.status_label.configure(text="Status: Error")
                 self.documents_label.configure(text="Documents Loaded: N/A")
@@ -51,10 +72,13 @@ class DiagnosticsWidget:
     def run(self):
         self.root.mainloop()
 
+
 class SystemTray:
     def __init__(self, widget):
         self.widget = widget
-        self.icon = Icon("VoidCat Diagnostics", self.create_icon(), menu=self.create_menu())
+        self.icon = Icon(
+            "VoidCat Diagnostics", self.create_icon(), menu=self.create_menu()
+        )
 
     def create_icon(self):
         image = Image.new("RGB", (64, 64), "white")
@@ -66,7 +90,7 @@ class SystemTray:
     def create_menu(self):
         return Menu(
             MenuItem("Show Widget", self.show_widget),
-            MenuItem("Exit", self.exit_application)
+            MenuItem("Exit", self.exit_application),
         )
 
     def show_widget(self):
@@ -78,6 +102,7 @@ class SystemTray:
 
     def run(self):
         self.icon.run()
+
 
 if __name__ == "__main__":
     widget = DiagnosticsWidget()

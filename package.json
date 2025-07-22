@@ -1,0 +1,33 @@
+{
+  "name": "voidcat-reasoning-core",
+  "version": "0.1.0",
+  "description": "Advanced RAG-Enhanced Reasoning Engine with Strategic Intelligence",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"No JS linting configured\"",
+    "build": "echo \"No JS build process\"",
+    "dev": "echo \"Use Python uvicorn for development server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorrowscry86/voidcat-reasoning-core.git"
+  },
+  "keywords": [
+    "ai",
+    "rag",
+    "reasoning",
+    "nlp",
+    "fastapi",
+    "openai",
+    "machine-learning"
+  ],
+  "author": "VoidCat Reasoning Core Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sorrowscry86/voidcat-reasoning-core/issues"
+  },
+  "homepage": "https://github.com/sorrowscry86/voidcat-reasoning-core#readme",
+  "devDependencies": {},
+  "dependencies": {}
+}

@@ -1,11 +1,111 @@
-# docker-compose.yml
+# ============================================================================
+# VoidCat Reasoning Engine - Enhanced Docker Compose Configuration
+# ============================================================================
+# Demonstrates flexible operational modes using the enhanced entrypoint
+# Supports API Gateway, MCP Server, and custom configurations
+# ============================================================================
+
 version: '3.8'
+
 services:
-  voidcat-engine:
+  # Primary API Gateway Service (Default)
+  voidcat-api:
     build: .
+    container_name: voidcat-api-gateway
     ports:
       - "8000:8000"
     volumes:
-      - ./knowledge_source:/app/knowledge_source
+      - ./knowledge_source:/app/knowledge_source:ro
+      - ./.agentic-tools-mcp:/app/.agentic-tools-mcp
+      - ./indexes:/app/indexes
     env_file:
       - .env
+    environment:
+      - VOIDCAT_DEBUG=false
+      - VOIDCAT_API_MODE=true
+    command: ["api"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # MCP Server Service (for Claude Desktop integration)
+  voidcat-mcp:
+    build: .
+    container_name: voidcat-mcp-server
+    stdin_open: true
+    tty: false
+    volumes:
+      - ./knowledge_source:/app/knowledge_source:ro
+      - ./.agentic-tools-mcp:/app/.agentic-tools-mcp
+      - ./indexes:/app/indexes
+    env_file:
+      - .env
+    environment:
+      - VOIDCAT_DEBUG=false
+      - VOIDCAT_MCP_MODE=true
+    command: ["mcp"]
+    restart: unless-stopped
+    profiles:
+      - mcp
+    healthcheck:
+      test: ["CMD", "python", "-c", "import mcp_server; print('MCP OK')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  # Development/Debug Service with enhanced logging
+  voidcat-dev:
+    build: .
+    container_name: voidcat-development
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./knowledge_source:/app/knowledge_source:rw
+      - ./.agentic-tools-mcp:/app/.agentic-tools-mcp
+      - ./indexes:/app/indexes
+      - .:/app:rw  # Mount entire directory for development
+    env_file:
+      - .env
+    environment:
+      - VOIDCAT_DEBUG=true
+      - VOIDCAT_API_MODE=true
+    command: ["uvicorn", "api_gateway:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    restart: "no"
+    profiles:
+      - development
+
+  # Test Harness Service
+  voidcat-test:
+    build: .
+    container_name: voidcat-test-harness
+    volumes:
+      - ./knowledge_source:/app/knowledge_source:ro
+      - ./.agentic-tools-mcp:/app/.agentic-tools-mcp
+      - ./indexes:/app/indexes
+    env_file:
+      - .env
+    environment:
+      - VOIDCAT_DEBUG=true
+      - VOIDCAT_TEST_MODE=true
+    command: ["test"]
+    restart: "no"
+    profiles:
+      - testing
+
+# Named volumes for persistent data
+volumes:
+  voidcat-indexes:
+    driver: local
+  voidcat-tools:
+    driver: local
+
+# Network configuration
+networks:
+  default:
+    name: voidcat-network
+    driver: bridge

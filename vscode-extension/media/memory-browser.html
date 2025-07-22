@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Browser</title>
+    <link href="{{styleUri}}" rel="stylesheet" />
+</head>
+<body>
+    <h1>Memory Browser</h1>
+    <div class="controls">
+        <input type="text" id="search-query" placeholder="Search memories...">
+        <select id="category-filter">
+            <option value="">All Categories</option>
+            <option value="user_preferences">User Preferences</option>
+            <option value="conversation_history">Conversation History</option>
+            <option value="learned_heuristics">Learned Heuristics</option>
+            <option value="behavior_patterns">Behavior Patterns</option>
+            <option value="context_associations">Context Associations</option>
+            <option value="task_insights">Task Insights</option>
+            <option value="system_configuration">System Configuration</option>
+            <option value="interaction_feedback">Interaction Feedback</option>
+        </select>
+        <button id="search-button">Search</button>
+    </div>
+
+    <div class="category-management">
+        <h2>Category Management</h2>
+        <input type="text" id="new-category-name" placeholder="New category name">
+        <button id="add-category-button">Add Category</button>
+        <ul id="category-list"></ul>
+    </div>
+
+    <div id="memories-container"></div>
+
+    <div class="memory-visualization">
+        <h2>Memory Visualization</h2>
+        <div id="visualization-chart"></div>
+    </div>
+
+    <div class="memory-analytics">
+        <h2>Memory Analytics</h2>
+        <div id="analytics-data"></div>
+    </div>
+
+    <div id="memory-detail" style="display: none;">
+        <h2>Memory Details</h2>
+        <h3 id="detail-title"></h3>
+        <p id="detail-content"></p>
+        <p><strong>Category:</strong> <span id="detail-category"></span></p>
+        <p><strong>Importance:</strong> <span id="detail-importance"></span></p>
+        <p><strong>Created At:</strong> <span id="detail-created-at"></span></p>
+        <p><strong>Last Accessed:</strong> <span id="detail-last-accessed"></span></p>
+        <p><strong>Tags:</strong> <span id="detail-tags"></span></p>
+        <button id="back-to-list">Back to List</button>
+    </div>
+    <script src="{{scriptUri}}"></script>
+</body>
+</html>

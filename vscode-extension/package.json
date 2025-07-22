@@ -1,0 +1,203 @@
+{
+    "name": "voidcat-reasoning-core",
+    "displayName": "VoidCat Reasoning Core",
+    "description": "Comprehensive AI-powered developer experience with reasoning, code analysis, and intelligent task management",
+    "version": "0.2.0",
+    "publisher": "VoidCatSystems",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "AI",
+        "Productivity",
+        "Development Tools",
+        "Task Management"
+    ],
+    "keywords": [
+        "AI",
+        "reasoning",
+        "code analysis",
+        "task management",
+        "developer experience",
+        "RAG",
+        "intelligent suggestions"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "voidcat.initialize",
+                "title": "Initialize VoidCat Engine",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.query",
+                "title": "Query VoidCat Engine",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.analyzeFile",
+                "title": "Analyze Current File",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.analyzeSelection",
+                "title": "Analyze Selection",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.explainCode",
+                "title": "Explain Code",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.suggestImprovements",
+                "title": "Suggest Code Improvements",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.semanticSearch",
+                "title": "Semantic Search Codebase",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.showDashboard",
+                "title": "Show Dashboard",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.showTaskManager",
+                "title": "Show Task Manager",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.createTask",
+                "title": "Create New Task",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.showMemoryBrowser",
+                "title": "Show Memory Browser",
+                "category": "VoidCat"
+            },
+            {
+                "command": "voidcat.showDiagnostics",
+                "title": "Show Engine Diagnostics",
+                "category": "VoidCat"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "voidcat.analyzeSelection",
+                    "when": "editorHasSelection",
+                    "group": "voidcat@1"
+                },
+                {
+                    "command": "voidcat.explainCode",
+                    "when": "editorHasSelection",
+                    "group": "voidcat@2"
+                },
+                {
+                    "command": "voidcat.suggestImprovements",
+                    "when": "editorHasSelection",
+                    "group": "voidcat@3"
+                },
+                {
+                    "command": "voidcat.analyzeFile",
+                    "group": "voidcat@4"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "voidcat.analyzeFile",
+                    "when": "resourceExtname =~ /\\.(js|ts|jsx|tsx|py|java|cs|go|rs|cpp|c|h|hpp)$/",
+                    "group": "voidcat@1"
+                }
+            ]
+        },
+        "views": {
+            "explorer": [
+                {
+                    "id": "voidcat.dashboard",
+                    "name": "VoidCat Dashboard",
+                    "when": "voidcat:initialized"
+                },
+                {
+                    "id": "voidcat.taskManager",
+                    "name": "Task Manager",
+                    "when": "voidcat:initialized"
+                },
+                {
+                    "id": "voidcat.memoryBrowser",
+                    "name": "Memory Browser",
+                    "when": "voidcat:initialized"
+                }
+            ]
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "voidcat",
+                    "title": "VoidCat",
+                    "icon": "$(robot)"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "VoidCat",
+            "properties": {
+                "voidcat.engine.autoStart": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically start VoidCat engine when VS Code opens"
+                },
+                "voidcat.engine.host": {
+                    "type": "string",
+                    "default": "localhost",
+                    "description": "VoidCat engine host"
+                },
+                "voidcat.engine.port": {
+                    "type": "number",
+                    "default": 8002,
+                    "description": "VoidCat engine port"
+                },
+                "voidcat.analysis.autoAnalyze": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically analyze files when opened"
+                },
+                "voidcat.ui.theme": {
+                    "type": "string",
+                    "enum": ["dark", "light", "auto"],
+                    "default": "auto",
+                    "description": "UI theme preference"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "dependencies": {
+        "axios": "^1.4.0",
+        "ws": "^8.13.0"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.85.0",
+        "@types/node": "^18.0.0",
+        "@types/ws": "^8.5.0",
+        "typescript": "^5.0.0",
+        "eslint": "^8.0.0",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0"
+    }
+}

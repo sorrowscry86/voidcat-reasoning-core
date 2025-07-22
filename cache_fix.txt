@@ -1,0 +1,20 @@
+﻿    def _cache_index(self):
+        """Cache the document index to disk using JSON for security."""
+        try:
+            import json
+            import numpy as np
+            
+            # Convert numpy arrays to lists for JSON serialization
+            serializable_vectors = self.doc_vectors.toarray().tolist() if self.doc_vectors is not None else None
+            
+            cache_path = "knowledge_index.json"
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump({
+                    "documents": self.documents,
+                    "metadata": self.metadata if hasattr(self, "metadata") else None,
+                    "vectors_shape": self.doc_vectors.shape if self.doc_vectors is not None else None,
+                    "vectors_data": serializable_vectors
+                }, f)
+            debug_print(f"Successfully cached index to {cache_path}")
+        except Exception as e:
+            debug_print(f"Error caching index: {str(e)}")

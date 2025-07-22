@@ -1,0 +1,88 @@
+{
+    "mcpServers": {
+        "playwright": {
+            "command": "npx",
+            "args": [
+                "@playwright/mcp@latest"
+            ]
+        },
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "C:\\Users\\Wykeve",
+                "P:\\",
+                "D:\\"
+            ]
+        },
+        "memory": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-memory"
+            ]
+        },
+        "context7": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@upstash/context7-mcp@latest"
+            ]
+        },
+        "hyperbrowser": {
+            "command": "npx",
+            "args": [
+                "hyperbrowser-mcp"
+            ],
+            "env": {
+                "HYPERBROWSER_API_KEY": "hb_9a9ef90d6c46f084a8602ff24378"
+            }
+        },
+        "everything": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-everything"
+            ]
+        },
+        "MCP_DOCKER": {
+            "command": "docker",
+            "args": [
+                "run",
+                "-l",
+                "mcp.client=claude-desktop",
+                "--rm",
+                "-i",
+                "alpine/socat",
+                "STDIO",
+                "TCP:host.docker.internal:8811"
+            ]
+        },
+        "voidcat-reasoning-core": {
+            "command": "python",
+            "args": [
+                "D:\\03_Development\\Active_Projects\\voidcat-reasoning-core\\mcp_server.py"
+            ],
+            "env": {
+                "OPENAI_API_KEY": "sk-your-actual-openai-api-key-here",
+                "DEEPSEEK_API_KEY": "sk-your-actual-deepseek-api-key-here",
+                "PYTHONPATH": "D:\\03_Development\\Active_Projects\\voidcat-reasoning-core"
+            }
+        },
+        "desktop-commander": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@wonderwhy-er/desktop-commander"
+            ]
+        },
+        "google-workspace": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@googleworkspace/mcp-dev-assist"
+            ]
+        }
+    }
+}

@@ -1,0 +1,195 @@
+{
+  "by_id": {
+    "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f": {
+      "id": "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f",
+      "project_id": "2887cd4a-7468-4ac5-b50b-964fa0b79766",
+      "name": "Task 1: Enhanced Task Management Data Models",
+      "status": "completed"
+    },
+    "599ace2e-c671-4876-be9a-4844312d8d42": {
+      "id": "599ace2e-c671-4876-be9a-4844312d8d42",
+      "project_id": "2887cd4a-7468-4ac5-b50b-964fa0b79766",
+      "name": "Task 2: JSON Persistence Layer Implementation",
+      "status": "completed"
+    },
+    "16c628f9-f1ec-497b-b492-efe702837630": {
+      "id": "16c628f9-f1ec-497b-b492-efe702837630",
+      "project_id": "2887cd4a-7468-4ac5-b50b-964fa0b79766",
+      "name": "Task 3: Hierarchical Task Operations Engine",
+      "status": "completed"
+    },
+    "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m": {
+      "id": "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+      "project_id": "2887cd4a-7468-4ac5-b50b-964fa0b79766",
+      "name": "Task 4: MCP Tool Interface Integration",
+      "status": "completed"
+    },
+    "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t": {
+      "id": "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t",
+      "project_id": "2887cd4a-7468-4ac5-b50b-964fa0b79766",
+      "name": "Task 5: VoidCat System Integration",
+      "status": "completed"
+    },
+    "5b05a721-6298-42ac-ae54-5b42e8d249d0": {
+      "id": "5b05a721-6298-42ac-ae54-5b42e8d249d0",
+      "project_id": "2887cd4a-7468-4ac5-b50b-964fa0b79766",
+      "name": "Task 6: Testing, Validation & Documentation",
+      "status": "in-progress"
+    },
+    "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e": {
+      "id": "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e",
+      "project_id": "2887cd4a-7468-4ac5-b50b-964fa0b79766",
+      "name": "Pillar II, Task 1: Memory Module Architecture Design",
+      "status": "pending"
+    },
+    "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p": {
+      "id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "project_id": "3a9b7c8d-6e5f-4d3c-2b1a-0f9e8d7c6b5a",
+      "name": "Clone Coordination Proof of Concept",
+      "status": "in-progress"
+    },
+    "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f": {
+      "id": "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f",
+      "project_id": "3a9b7c8d-6e5f-4d3c-2b1a-0f9e8d7c6b5a",
+      "name": "Beta Clone: Codebase Integration Analysis",
+      "status": "in-progress"
+    }
+  },
+  "by_project": {
+    "2887cd4a-7468-4ac5-b50b-964fa0b79766": [
+      "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f",
+      "599ace2e-c671-4876-be9a-4844312d8d42",
+      "16c628f9-f1ec-497b-b492-efe702837630",
+      "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+      "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t",
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0",
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e"
+    ],
+    "3a9b7c8d-6e5f-4d3c-2b1a-0f9e8d7c6b5a": [
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ]
+  },
+  "by_status": {
+    "completed": [
+      "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f",
+      "599ace2e-c671-4876-be9a-4844312d8d42",
+      "16c628f9-f1ec-497b-b492-efe702837630",
+      "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+      "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t"
+    ],
+    "in-progress": [
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0",
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ],
+    "pending": [
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e"
+    ]
+  },
+  "by_priority": {
+    "high": [
+      "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f",
+      "599ace2e-c671-4876-be9a-4844312d8d42",
+      "16c628f9-f1ec-497b-b492-efe702837630",
+      "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+      "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t",
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0",
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ],
+    "medium": [
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e"
+    ]
+  },
+  "by_tags": {
+    "pillar-i": [
+      "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f",
+      "599ace2e-c671-4876-be9a-4844312d8d42",
+      "16c628f9-f1ec-497b-b492-efe702837630",
+      "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+      "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t",
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0"
+    ],
+    "data-models": [
+      "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f"
+    ],
+    "foundation": [
+      "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f",
+      "599ace2e-c671-4876-be9a-4844312d8d42",
+      "16c628f9-f1ec-497b-b492-efe702837630"
+    ],
+    "persistence": [
+      "599ace2e-c671-4876-be9a-4844312d8d42"
+    ],
+    "operations": [
+      "16c628f9-f1ec-497b-b492-efe702837630"
+    ],
+    "mcp-tools": [
+      "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m"
+    ],
+    "integration": [
+      "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ],
+    "system-integration": [
+      "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t"
+    ],
+    "context-awareness": [
+      "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t"
+    ],
+    "testing": [
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0"
+    ],
+    "documentation": [
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0"
+    ],
+    "validation": [
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0"
+    ],
+    "pillar-ii": [
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e"
+    ],
+    "memory": [
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e"
+    ],
+    "architecture": [
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e"
+    ],
+    "design": [
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e"
+    ],
+    "research": [
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ],
+    "coordination": [
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p"
+    ],
+    "clones": [
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p"
+    ],
+    "protocols": [
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p"
+    ],
+    "analysis": [
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ],
+    "beta-clone": [
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ]
+  },
+  "by_parent": {
+    "null": [
+      "a6c738c2-5c3e-4a7d-b44e-b7e5d00ed92f",
+      "599ace2e-c671-4876-be9a-4844312d8d42",
+      "16c628f9-f1ec-497b-b492-efe702837630",
+      "7d8e9f0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+      "3e4f5g6h-7i8j-9k0l-1m2n-3o4p5q6r7s8t",
+      "5b05a721-6298-42ac-ae54-5b42e8d249d0",
+      "9t8s7r6q-5p4o-3n2m-1l0k-9j8i7h6g5f4e",
+      "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "7q8r9s0t-1u2v-3w4x-5y6z-7a8b9c0d1e2f"
+    ]
+  }
+}

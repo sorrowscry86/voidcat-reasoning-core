@@ -1,182 +1,91 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-#   in version control.
-#   https://pdm.fming.dev/#use-with-ide
-.pdm.toml
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
+﻿# Environment variables
 .env
-.venv
-env/
+.env.*
+!.env.example
+.env.bak
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+
+# Virtual environment
 venv/
-ENV/
-env.bak/
-venv.bak/
+env/
+.venv/
 
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be added to the global gitignore or merged into this project gitignore.  For a PyCharm
-#  project, it is recommended to comment the following line:
-#.idea/
-
-# IDE
+# IDE and editor directories
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
+*.swp
+*.swo
 
-# OS
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+
+# Cache files
+knowledge_index.pkl
+knowledge_index.json
+*.pkl
+*.cache
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
 .DS_Store
-Thumbs.db
-desktop.ini
-
-# VoidCat Reasoning Core specific
-knowledge_source_backup/
-temp/
-docs/_build/
-
-# Ignore Albedo Supermemory file
-Albedo Supermemory.txt
-
-# Ignore sensitive configuration files
-claude_desktop_config.json
-.env
+.agentic-tools-mcp/memories/01/01647dc1-7a8b-43e3-a5b3-0dff08b85f27.json
+.agentic-tools-mcp/memories/23/2385d769-7bcc-4225-9844-2f2e1ad94431.json
+.agentic-tools-mcp/memories/33/3356c67e-229f-41c5-81ee-9a41a5664ebc.json
+.agentic-tools-mcp/memories/5d/5d7f7389-f027-4eac-825a-18140129e674.json
+.agentic-tools-mcp/memories/62/6247585e-e2d6-40cd-8872-5b63837db642.json
+.agentic-tools-mcp/memories/6a/6a55a10b-e6ff-4875-bba5-46be7c62d795.json
+.agentic-tools-mcp/memories/78/78903e83-7cec-4ee1-bf69-6fb5f14054e8.json
+.agentic-tools-mcp/memories/7e/7e3e9ab7-1938-4eb0-ae3b-d9e25462ccb1.json
+.agentic-tools-mcp/memories/80/8069e4f6-f618-4d68-ab02-5d858b460a90.json
+.agentic-tools-mcp/memories/95/9518df23-788d-4196-a79d-731c793f6e39.json
+.agentic-tools-mcp/memories/9a/9a2fcc59-44c6-46b5-94e6-cd30b5613d1e.json
+.agentic-tools-mcp/memories/agent_communication/Message_for_Unit_Test_Agent_-_Project_Handoff.json
+.agentic-tools-mcp/memories/ba/baf5f206-a32b-43aa-8766-874e80744783.json
+.agentic-tools-mcp/memories/c3/c35efcf6-b85a-43d0-a690-73a7e308467e.json
+.agentic-tools-mcp/memories/clone_coordination/Clone_Network_Communication_Investigation.json
+.agentic-tools-mcp/memories/demo_summary/Complete_Memory_MCP_Tools_Demo_Summary.json
+.agentic-tools-mcp/memories/documentation/Agentic-Tools-MCP_Mastery_Guide_Creation.json
+.agentic-tools-mcp/memories/e1/e195350e-98b9-48b4-a47f-b60d811d65ff.json
+.agentic-tools-mcp/memories/fd/fdb5e5b4-670c-45fa-9943-b521543fe6b2.json
+.agentic-tools-mcp/memories/implementation_status/Clone_Research_Implementation_Status_&_Next_Steps.json
+.agentic-tools-mcp/memories/pillar-iii/Clone_Coordination_Progress_-_Pillar_III.json
+.agentic-tools-mcp/memories/project_analysis/Pillar_III_Analysis_-_VS_Code_Extension.json
+.agentic-tools-mcp/memories/project_completion/Enhanced_Memory_Storage_System_Complete.json
+.agentic-tools-mcp/memories/project_context/Project_Status_-_Pillar_II_Progress_Update.json
+.agentic-tools-mcp/memories/project_coordination/Clone_Coordination_Strategy_for_V2_Pillars.json
+.agentic-tools-mcp/memories/project_coordination/VoidCat_V2_Clone_Coordination_Strategy.json
+.agentic-tools-mcp/memories/project_milestone/Pillar_II_Task_6_Completion_Summary.json
+.agentic-tools-mcp/memories/project_milestones/Task_5_Completion_VoidCat_System_Integration.json
+.agentic-tools-mcp/memories/project_progress/Memory_Storage_Engine_Implementation_Complete.json
+.agentic-tools-mcp/memories/project_progress/Pillar_I_Progress_5_6_Tasks_Completed.json
+.agentic-tools-mcp/memories/project_progress/VoidCat_V2_Operations_Engine_-_COMPLETED.json
+.agentic-tools-mcp/memories/project_progress/VoidCat_V2_Pillar_I_Progress_-_Tasks_1-3.json
+.agentic-tools-mcp/memories/project_progress/VoidCat_V2_Task_4_Complete_-_MCP_Integration.json
+.agentic-tools-mcp/memories/project_structure/VoidCat_V2_Four_Pillars_Project_Structure.json
+.agentic-tools-mcp/memories/research_documentation/VoidCat-DSN_Research_Documentation_Framework.json
+.agentic-tools-mcp/memories/task_insights/Memory_Search_System_Implementation_Complete.json
+.agentic-tools-mcp/memories/task_insights/Memory_Storage_Engine_Implementation_Complete.json
+.agentic-tools-mcp/memories/task_insights/Memory_Storage_Engine_Implementation_Guide.json
+.agentic-tools-mcp/memories/tool_demonstration/Memory_MCP_Tools_Demonstration.json
+.agentic-tools-mcp/memories/tool_usage/Agentic_MCP_Tools_Success_Task_Management_Demo.json
+.agentic-tools-mcp/memories/voidcat-restoration/VoidCat_V2_Tasks_Restoration_July_2025.json

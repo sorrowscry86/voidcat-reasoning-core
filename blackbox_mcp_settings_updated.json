@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "agentic-tools": {
+      "command": "agentic-tools-mcp",
+      "disabled": false,
+      "autoApprove": []
+    },
+    "supermemory": {
+      "transport": "sse",
+      "url": "https://mcp.supermemory.ai/ncpFJRk2NjrDl9ORLNbvh/sse",
+      "disabled": false,
+      "autoApprove": []
+    },
+    "github.com/upstash/context7-mcp": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "github.com/antvis/mcp-server-chart": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@antv/mcp-server-chart"
+      ],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "updated_at": "2025-07-15T09:57:15.932034+00:00",
+  "info": {
+    "version": "2.0.0",
+    "entities": {
+      "VoidCatTask": {
+        "description": "Hierarchical task with comprehensive metadata",
+        "required_fields": [
+          "id",
+          "name",
+          "status",
+          "priority"
+        ],
+        "supported_statuses": [
+          "pending",
+          "in-progress",
+          "blocked",
+          "on-hold",
+          "completed",
+          "cancelled",
+          "failed"
+        ],
+        "supported_priorities": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          10
+        ]
+      },
+      "VoidCatProject": {
+        "description": "Project container for hierarchical tasks",
+        "required_fields": [
+          "id",
+          "name",
+          "status"
+        ],
+        "features": [
+          "unlimited_hierarchy",
+          "metrics_tracking",
+          "collaborative"
+        ]
+      }
+    },
+    "capabilities": [
+      "unlimited_nesting",
+      "dependency_management",
+      "workflow_enforcement",
+      "audit_trail",
+      "metrics_tracking",
+      "json_serialization"
+    ]
+  }
+}
