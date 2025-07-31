@@ -1,0 +1,12 @@
+include README.md
+include LICENSE
+include requirements.txt
+include *.md
+include *.txt
+recursive-include knowledge_source *
+recursive-include indexes *
+recursive-include .agentic-tools-mcp *
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude Thumbs.db

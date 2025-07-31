@@ -1,0 +1,76 @@
+{
+  "mcpServers": {
+    "browsermcp": {
+      "command": "npx",
+      "args": [
+        "@browsermcp/mcp@latest"
+      ]
+    },
+    "memorymesh": {
+      "command": "node",
+      "args": [
+        "C:\\MCP_Projects\\MemoryMesh\\dist\\index.js"
+      ]
+    },
+    "think-mcp": {
+      "command": "uvx",
+      "args": [
+        "think-mcp",
+        "--advanced"
+      ],
+      "env": {
+        "TAVILY_API_KEY": "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"
+      }
+    },
+    "desktop-commander-mcp": {
+      "command": "npx",
+      "args": [
+        "@wonderwhy-er/desktop-commander@latest"
+      ]
+    },
+    "vscode": {
+      "command": "npx",
+      "args": [
+        "vscode-as-mcp-server"
+      ]
+    },
+    "gcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "gcp-mcp"
+      ]
+    },
+    "agentic-tools": {
+      "command": "agentic-tools-mcp"
+    },
+    "voidcat-reasoning-core-fastmcp": {
+      "command": "python",
+      "args": [
+        "D:\\03_Development\\Active_Projects\\voidcat-reasoning-core\\fastmcp_server.py"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key_here",
+        "DEEPSEEK_API_KEY": "your_deepseek_api_key_here",
+        "PYTHONPATH": "D:\\03_Development\\Active_Projects\\voidcat-reasoning-core",
+        "VOIDCAT_DEBUG": "false",
+        "VOIDCAT_MCP_MODE": "true"
+      }
+    },
+    "crawl4ai": {
+      "command": "python",
+      "args": [
+        "D:\\Ryuzu Claude\\crawl4ai_mcp_server\\fastmcp_server.py"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key_here"
+      }
+    },
+   "agent-communication-mcp": {
+     "command": "node",
+     "args": [
+       "e:/Sandbox/agent-communication-mcp/dist/index.js"
+     ]
+   }
+  }
+}

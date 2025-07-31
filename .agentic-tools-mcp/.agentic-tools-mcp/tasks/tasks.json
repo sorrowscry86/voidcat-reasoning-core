@@ -1,0 +1,136 @@
+{
+  "projects": [
+    {
+      "id": "4439681d-780f-4361-ac59-134d91e64019",
+      "name": "FastMCP Migration",
+      "description": "Migrate the VoidCat Reasoning Core from MCP to FastMCP architecture, streamlining the project by removing unnecessary files and improving code organization.",
+      "createdAt": "2025-07-27T10:36:24.352Z",
+      "updatedAt": "2025-07-27T10:36:24.352Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "c278a8a6-e2fd-43ad-a0d2-917ee043c3d7",
+      "name": "Create FastMCP Implementation",
+      "details": "Create a new fastmcp.py file that implements the FastMCP architecture using FastAPI. This should include:\n1. Tool registration and execution\n2. Integration with VoidCat engine\n3. Async request handling\n4. Built-in tools for notifications and reasoning",
+      "projectId": "4439681d-780f-4361-ac59-134d91e64019",
+      "completed": false,
+      "createdAt": "2025-07-27T10:36:29.295Z",
+      "updatedAt": "2025-07-27T10:37:18.802Z",
+      "dependsOn": [],
+      "priority": 10,
+      "complexity": 8,
+      "status": "in-progress",
+      "tags": [],
+      "level": 0
+    },
+    {
+      "id": "e1500bcb-000d-4410-9742-b6b0fd35a420",
+      "name": "Create FastMCP Launch Script",
+      "details": "Create a launch_fastmcp.py script that properly initializes the environment and starts the FastMCP server. This should:\n1. Set up the Python environment\n2. Import the FastMCP implementation\n3. Handle errors gracefully\n4. Provide clear logging",
+      "projectId": "4439681d-780f-4361-ac59-134d91e64019",
+      "completed": false,
+      "createdAt": "2025-07-27T10:36:35.710Z",
+      "updatedAt": "2025-07-27T10:36:35.710Z",
+      "dependsOn": [
+        "c278a8a6-e2fd-43ad-a0d2-917ee043c3d7"
+      ],
+      "priority": 9,
+      "complexity": 5,
+      "status": "pending",
+      "tags": [],
+      "level": 0
+    },
+    {
+      "id": "2f8e2626-9d63-4f81-905f-81f8e1dc6c67",
+      "name": "Update API Gateway",
+      "details": "Update the API gateway to use FastMCP instead of the old MCP implementation. This should:\n1. Import the FastMCP implementation\n2. Use FastMCP for processing queries\n3. Ensure all existing endpoints continue to work\n4. Add any new endpoints needed for FastMCP",
+      "projectId": "4439681d-780f-4361-ac59-134d91e64019",
+      "completed": false,
+      "createdAt": "2025-07-27T10:36:41.192Z",
+      "updatedAt": "2025-07-27T10:40:49.299Z",
+      "dependsOn": [
+        "c278a8a6-e2fd-43ad-a0d2-917ee043c3d7"
+      ],
+      "priority": 8,
+      "complexity": 7,
+      "status": "in-progress",
+      "tags": [],
+      "level": 0
+    },
+    {
+      "id": "45133187-f585-42f4-bcd1-3c97dad5fe26",
+      "name": "Identify and Remove Unnecessary Files",
+      "details": "Identify and remove unnecessary or outdated files to streamline the project. This should include:\n1. Multiple MCP server implementations that are no longer needed\n2. Duplicate debug files\n3. Outdated launch scripts\n4. Any other files that are no longer needed with FastMCP",
+      "projectId": "4439681d-780f-4361-ac59-134d91e64019",
+      "completed": false,
+      "createdAt": "2025-07-27T10:36:52.369Z",
+      "updatedAt": "2025-07-27T10:40:36.001Z",
+      "dependsOn": [],
+      "priority": 7,
+      "complexity": 4,
+      "status": "in-progress",
+      "tags": [],
+      "level": 0
+    },
+    {
+      "id": "6ad8d593-d3df-4c5a-b13a-68441cb8a86e",
+      "name": "Update Docker Configuration",
+      "details": "Update the Docker configuration to use FastMCP instead of the old MCP implementation. This should:\n1. Update the Dockerfile to use FastMCP\n2. Update docker-compose.yml if needed\n3. Update any Docker launch scripts",
+      "projectId": "4439681d-780f-4361-ac59-134d91e64019",
+      "completed": false,
+      "createdAt": "2025-07-27T10:36:59.010Z",
+      "updatedAt": "2025-07-27T10:36:59.010Z",
+      "dependsOn": [
+        "c278a8a6-e2fd-43ad-a0d2-917ee043c3d7",
+        "e1500bcb-000d-4410-9742-b6b0fd35a420"
+      ],
+      "priority": 6,
+      "complexity": 5,
+      "status": "pending",
+      "tags": [],
+      "level": 0
+    },
+    {
+      "id": "45c35f7e-7e15-4f7c-9952-fc007d24ca34",
+      "name": "Update Tests",
+      "details": "Update the tests to work with FastMCP instead of the old MCP implementation. This should:\n1. Update existing tests to use FastMCP\n2. Add new tests for FastMCP-specific functionality\n3. Remove tests that are no longer relevant",
+      "projectId": "4439681d-780f-4361-ac59-134d91e64019",
+      "completed": false,
+      "createdAt": "2025-07-27T10:37:04.651Z",
+      "updatedAt": "2025-07-27T10:37:04.651Z",
+      "dependsOn": [
+        "c278a8a6-e2fd-43ad-a0d2-917ee043c3d7",
+        "2f8e2626-9d63-4f81-905f-81f8e1dc6c67"
+      ],
+      "priority": 5,
+      "complexity": 6,
+      "status": "pending",
+      "tags": [],
+      "level": 0
+    },
+    {
+      "id": "850b2ec2-b552-44f2-b336-5eaa9e99a54c",
+      "name": "Update Documentation",
+      "details": "Update the documentation to reflect the FastMCP architecture. This should:\n1. Update README.md with FastMCP information\n2. Update any other documentation files\n3. Add FastMCP-specific documentation",
+      "projectId": "4439681d-780f-4361-ac59-134d91e64019",
+      "completed": false,
+      "createdAt": "2025-07-27T10:37:11.298Z",
+      "updatedAt": "2025-07-27T10:37:11.298Z",
+      "dependsOn": [
+        "c278a8a6-e2fd-43ad-a0d2-917ee043c3d7",
+        "2f8e2626-9d63-4f81-905f-81f8e1dc6c67",
+        "45133187-f585-42f4-bcd1-3c97dad5fe26"
+      ],
+      "priority": 4,
+      "complexity": 3,
+      "status": "pending",
+      "tags": [],
+      "level": 0
+    }
+  ],
+  "subtasks": [],
+  "migration": {
+    "version": "1.8.1"
+  }
+}

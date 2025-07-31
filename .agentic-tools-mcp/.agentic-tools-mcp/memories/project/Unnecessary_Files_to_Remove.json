@@ -1,0 +1,8 @@
+{
+  "id": "56b7b83c-c60b-425e-bac7-799459a8d1c4",
+  "title": "Unnecessary Files to Remove",
+  "details": "Based on the analysis of the VoidCat Reasoning Core project, the following files are unnecessary or outdated and can be removed to streamline the project:\n\n1. Multiple MCP server implementations:\n   - mcp_server_simplified.py (redundant implementation)\n   - mcp_server_simplified_fixed.py (redundant implementation)\n   - mcp_server_windows.py (will be replaced by FastMCP)\n   - mcp_server_clean.py (will be replaced by FastMCP)\n\n2. Multiple debug files:\n   - fastmcp_debug_simple.py (will be consolidated into FastMCP)\n   - fastmcp_debug_fixed.py (will be consolidated into FastMCP)\n   - debug_api_gateway.py (debugging utility that's no longer needed)\n\n3. Multiple launch scripts:\n   - launch_mcp_server.py (will be replaced by launch_fastmcp.py)\n   - launch_clean_mcp.py (will be replaced by launch_fastmcp.py)\n   - docker_mcp_launcher.py (will be updated to use FastMCP)\n\n4. Test files that are no longer relevant:\n   - test_mcp_direct.py (tests the old MCP implementation)\n   - test_mcp_connection.py (tests the old MCP implementation)\n   - test_mcp_comm.py (tests the old MCP implementation)\n   - test_e2e_mcp_server.py (tests the old MCP implementation)\n\n5. Backup files that are no longer needed:\n   - backups/mcp_server_working_20250722.py (old backup)\n\nThese files can be safely removed as part of the migration to FastMCP. The functionality they provide will be replaced by the new FastMCP implementation.",
+  "category": "project",
+  "dateCreated": "2025-07-27T10:40:44.916Z",
+  "dateUpdated": "2025-07-27T10:40:44.916Z"
+}
