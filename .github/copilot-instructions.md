@@ -123,6 +123,7 @@ The VoidCat Reasoning Core (VRE) now includes:
 - **Always** ensure all dependencies are included in the `requirements.txt` file.
 - **Always** log to stderr, not stdout, when writing MCP servers.
 - When configuring Claude Desktop, remove the following MCP servers: `playwright`, `filesystem`, `hyperbrowser`, `workspace`, `mermaid`, `github`, `websearch`, and `mcp`. The kept servers are: `memory`, `context7`, `MCP_DOCKER`, `voidcat-reasoning-core-v2`, `desktop-commander`, `agentic-tools`, `think-mcp`, `pylance-mcp`, `sqlite`, `postgres`, and `brave-search`.
+- Look for and delete all "report" and unnecessary note and test files. Remove all test files.
 
 ## VOIDCAT REASONING CORE TOOLS
 
@@ -379,7 +380,27 @@ DEEPSEEK_API_KEY='your_deepseek_api_key_here'
 - If `git filter-repo` is not available, use `git filter-branch` as an alternative. However, `git filter-repo` is the preferred and more reliable tool.
 - Before rewriting history, ensure that all unstaged changes are stashed to avoid conflicts.
 - Be prepared to install `git filter-repo` if it is not already available in the environment.
+- If `git filter-repo` is refusing to rewrite the repository history because it is not operating on a fresh clone, clone the repository afresh and run the `git filter-repo` command on the fresh clone. This is safer and avoids potential issues.
 
 ## PATH ENVIRONMENT VARIABLE
 
 - If a warning message indicates that the Python scripts directory (e.g., `'C:\Users\Wykeve\AppData\Roaming\Python\Python313\Scripts'`) is not on the PATH, add it to the PATH environment variable. This ensures that commands like `pip` can be run from any terminal location.
+
+### Steps to Add to PATH:
+
+1. Add the Python Scripts directory to the PATH environment variable.
+2. Restart your terminal or system for the changes to take effect.
+
+## FILE REMOVAL RULES
+
+- Look for and delete all "report" and unnecessary note and test files. Remove all test files. This rule is persistent to reduce repository size and complexity.
+- Remove all `.md` files related to "Claude", except for the following necessary files:
+  1. `WINDOWS_SETUP_GUIDE.md`: Contains critical setup instructions for Windows integration, including Claude Desktop configuration.
+  2. `VSCODE_INTEGRATION_PLAN.md`: Details the strategic enhancement plan for VS Code integration, including Claude Desktop optimization.
+  3. `SECURITY_FIX_REPORT.md`: Highlights security fixes, including updates to Claude Desktop configuration files.
+
+- Retain the following `.md` files as they are critical for project documentation, testing, and security:
+  1. `README.md`: Core project documentation, including setup, features, and integration details.
+  2. `README_ENHANCED.md`: Enhanced version documentation with advanced features like Sequential Thinking and Context7.
+  3. `SECURITY_NOTICE.md`: Important security update regarding API key management.
+  4. `ULTIMATE_TOOLS_RESTORATION.md`: Documentation of the operational status and usage of Ultimate Mode tools.
