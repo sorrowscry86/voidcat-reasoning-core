@@ -2,7 +2,7 @@ name: 🐳 VoidCat Reasoning Engine - Container Publishing
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - master
     tags:
@@ -11,6 +11,12 @@ on:
     branches:
       - main
       - master
+
+# Workflow-level permissions for code scanning and container publishing
+permissions:
+  contents: read
+  packages: write
+  security-events: write
 
 env:
   REGISTRY: ghcr.io
